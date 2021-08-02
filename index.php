@@ -15,7 +15,12 @@ if (isset($_FILES['file'])) {
     $maxSize = 400000;
     // on vérfie bien que la taille du fichier est inférieur à maxSize
     if (in_array($extension, $extensions) && $size <= $maxSize) {
-        move_uploaded_file($tmpName, './upload/' . $name);
+        //uniqid génère une chaine de caractère uniq 5f586bf96dcd38.73540086
+        $uniqueName = uniqid('', true);
+        //$file = 5f586bf96dcd38.73540086.jpg
+        $file = $uniqName . "." . $extension;
+
+        move_uploaded_file($tmpName, './upload/' . $file);
     } else {
         echo "Une erreur est survenue";
     }
